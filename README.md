@@ -101,6 +101,12 @@ npm run dev
 
 ---
 
+## Snapshots 
+- frontend:  ![Screenshot 2025-06-11 235105](https://github.com/user-attachments/assets/27cfd689-995a-49f8-86f8-0ef1ace8c325)
+- backend:   ![Screenshot 2025-06-11 234905](https://github.com/user-attachments/assets/137d5173-1300-4d89-813d-ba00f79cad0d)
+
+
+
 ## 🌐 API Endpoints
 
 - **GET /api/users** – List all users
