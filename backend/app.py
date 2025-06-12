@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-project.vercel.app", "http://localhost:5173"]}})  # Allow Vercel and local dev
+CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-project.vercel.app", "http://localhost:5173"]}})  # Update with your Vercel URL
 
 # Default user data (in-memory storage)
 users = [
