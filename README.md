@@ -1,52 +1,64 @@
 # 👥 React + Flask User Management App 🚀
 
-A simple full-stack web application featuring a **React + Vite** frontend and a **Flask** backend, styled beautifully with **Tailwind CSS** and **Heroicons**. It allows users to view and add users with real-time updates and sleek UI.
+A full-stack web application built with **React + Vite** for the frontend and **Flask** for the backend, styled beautifully with **Tailwind CSS** and **Heroicons**. The app allows users to view and add users dynamically, with real-time frontend-backend integration.
+
+---
+
+## 📍 Deployed URLs
+
+- **Frontend**: [https://react-flask-nine.vercel.app](https://react-flask-nine.vercel.app)
+- **Backend**: [https://react-flask-backend-froi.onrender.com](https://react-flask-backend-froi.onrender.com)
 
 ---
 
 ## ✨ Features
 
-- **Frontend**: Built with React + Vite for fast development and responsive UI.
-- **Backend**: Flask REST API to manage user data (`GET` and `POST` support).
-- **Styling**: Tailwind CSS for sleek and responsive design.
-- **Icons**: Heroicons for modern UI experience.
-- **Functionality**:
-  - 📋 View a list of users (name and email) in styled cards.
-  - ➕ Add new users with form validation and real-time updates.
-- **CORS**: Enabled via Flask-CORS for seamless integration.
+- 🚀 Fast, modern UI with **React + Vite**
+- 📋 View users in a responsive **card layout** with icons
+- ➕ Add new users with **form validation**
+- 🎨 Styled using **Tailwind CSS** & **Heroicons**
+- 🔄 Seamless **frontend-backend communication** with CORS enabled
 
 ---
 
 ## 🛠 Tech Stack
 
-| Layer     | Technology             |
-|-----------|------------------------|
+| Layer     | Technology                    |
+|-----------|-------------------------------|
 | Frontend  | React, Vite, Tailwind CSS, Heroicons |
-| Backend   | Flask, Flask-CORS      |
-| Language  | JavaScript, Python     |
-| Tools     | npm, pip, venv, Git    |
+| Backend   | Flask, Flask-CORS             |
+| Language  | JavaScript (ES Modules), Python |
+| Tools     | npm, pip, Git, Vercel, Render |
 
 ---
 
-## 📁 Project Structure
+## 📂 Project Structure
 
 ```
-react-flask-project/
+react_flask/
 ├── backend/
 │   ├── app.py              # Flask API with user endpoints
-│   ├── venv/               # Python virtual environment
-│   └── requirements.txt    # Python dependencies
+│   ├── requirements.txt    # Python dependencies
+│   └── venv/               # Python virtual environment
 ├── frontend/
 │   ├── src/
 │   │   ├── App.jsx         # Main React component
 │   │   ├── index.css       # Tailwind CSS import
-│   │   └── main.jsx        # React app entry point
-│   ├── index.html          # Root HTML file
+│   │   └── main.jsx        # Entry point
+│   ├── index.html          # HTML template
 │   ├── vite.config.js      # Vite configuration
-│   ├── package.json        # Frontend dependencies
-│   └── tailwind.config.js  # Tailwind CSS configuration
-└── README.md               # Documentation
+│   ├── package.json        # Node dependencies
+│   └── tailwind.config.js  # Tailwind configuration
+└── README.md               # Project documentation
 ```
+
+---
+
+## 📋 Prerequisites
+
+- Node.js (v16+)
+- Python (v3.8+)
+- Git & pip
 
 ---
 
@@ -55,82 +67,135 @@ react-flask-project/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/DattaSai13/react-flask-project.git
-cd react-flask-project
+git clone https://github.com/DattaSai13/react_flask.git
+cd react_flask
 ```
 
-### 2. Backend Setup
+### 2. Set Up the Backend
 
 ```bash
 cd backend
 python -m venv venv
-# Activate virtual environment
-# Windows:
+
+# Windows
 .env\Scriptsctivate
-# macOS/Linux:
+
+# macOS/Linux
 source venv/bin/activate
 
-pip install flask flask-cors
-# (Optional)
-pip freeze > requirements.txt
-
-python app.py
-# Running at http://127.0.0.1:5000
+pip install flask flask-cors gunicorn
+python app.py  # Run locally
 ```
 
-### 3. Frontend Setup
+Backend is served at [http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-In a new terminal:
+### 3. Set Up the Frontend
 
 ```bash
 cd frontend
 npm install
-npm install @heroicons/react
 npm run dev
-# Running at http://localhost:5174
 ```
 
----
-
-## 🧪 Testing the App
-
-- Open [http://localhost:5174](http://localhost:5174)
-- Add a user via the form
-- User appears instantly in the user list
-- Backend endpoint: [http://127.0.0.1:5000/api/users](http://127.0.0.1:5000/api/users)
+Frontend is served at [http://localhost:5173](http://localhost:5173)
 
 ---
 
-## Snapshots 
-- frontend:  ![Screenshot 2025-06-11 235105](https://github.com/user-attachments/assets/27cfd689-995a-49f8-86f8-0ef1ace8c325)
-- backend:   ![Screenshot 2025-06-11 234905](https://github.com/user-attachments/assets/137d5173-1300-4d89-813d-ba00f79cad0d)
+## 🔗 Integration & Environment Variables
 
+### Frontend
 
+In `App.jsx`, ensure:
+
+```js
+const backendUrl = import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000';
+```
+
+Set Vercel ENV variable:
+
+- `VITE_BACKEND_URL=https://react-flask-backend-froi.onrender.com`
+
+### Backend
+
+Enable CORS in `app.py`:
+
+```python
+CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-nine.vercel.app", "http://localhost:5173"]}})
+```
+
+Push changes and redeploy to Render.
+
+---
+
+## 🚀 Deploy to Production
+
+### Frontend: Vercel
+
+- Connect GitHub repository
+- Root directory: `frontend/`
+- Framework: Vite
+- Build: `npm run build`
+- Output: `dist`
+- Environment variable: `VITE_BACKEND_URL=https://react-flask-backend-froi.onrender.com`
+
+Deploy: [https://react-flask-nine.vercel.app](https://react-flask-nine.vercel.app)
+
+### Backend: Render
+
+- Connect GitHub repo
+- Root directory: `backend/`
+- Runtime: Python 3
+- Build: `pip install -r requirements.txt`
+- Start: `gunicorn --bind 0.0.0.0:$PORT app:app`
+
+Deploy: [https://react-flask-backend-froi.onrender.com](https://react-flask-backend-froi.onrender.com)
+
+---
+
+## ✅ Testing the App
+
+1. Visit [https://react-flask-nine.vercel.app](https://react-flask-nine.vercel.app)
+2. Add a user via the form with name and email
+3. View users listed with icons
+4. View API data: [https://react-flask-backend-froi.onrender.com/api/users](https://react-flask-backend-froi.onrender.com/api/users)
+
+---
 
 ## 🌐 API Endpoints
 
 - **GET /api/users** – List all users
-- **POST /api/users** – Add a new user
-  - Example body: `{ "name": "Jane Doe", "email": "jane@example.com" }`
+- **POST /api/users** – Add a user
+
+Example POST body:
+
+```json
+{
+  "name": "John Doe",
+  "email": "john@example.com"
+}
+```
 
 ---
 
 ## 🐛 Troubleshooting
 
-- **CORS Error**: Ensure `flask-cors` is installed and `CORS(app)` is in `app.py`
-- **Fetch Error**: Confirm backend is running and URL is correct in React
-- **Tailwind Not Working**: Ensure Tailwind is configured in `index.css` and Vite restarted
-- **Port Conflicts**: Change ports in `vite.config.js` or `app.py`
+| Issue            | Fix                                                                 |
+|------------------|----------------------------------------------------------------------|
+| CORS Errors      | Ensure `CORS(app, ...)` is set correctly                            |
+| Fetch Fails      | Ensure `VITE_BACKEND_URL` is correct on Vercel                      |
+| 502/404 on Render| Check `gunicorn` command and Flask app routes                       |
+| Vercel errors     | Check node version in `package.json`, rebuild from clean cache      |
+| Render delay     | Free tier apps may spin down — wait 10–20 seconds                   |
 
 ---
 
 ## 🚀 Future Enhancements
 
-- Add persistent DB (SQLite, MongoDB, etc.)
-- Edit & delete users
-- Email validation + better form error handling
-- Auth system (login, sessions)
-- Deployment: Vercel (frontend) + PythonAnywhere/Render (backend)
+- Add a database (e.g., SQLite, MongoDB)
+- Add delete/edit user features
+- Add form validation (email regex)
+- Secure APIs with authentication
+- Deployment enhancements
 
 ---
 
@@ -138,11 +203,11 @@ npm run dev
 
 ```bash
 # Fork the repo
-# Create a new feature branch
-git checkout -b feature/my-new-feature
-# Commit your changes
-git commit -m "Add my new feature"
-# Push and create a pull request 🚀
+# Create feature branch
+git checkout -b my-feature
+# Make changes and commit
+git commit -m "Add feature"
+# Push and open PR
 ```
 
 ---
@@ -150,9 +215,9 @@ git commit -m "Add my new feature"
 
 ## 📬 Contact
 
-- GitHub Issues for bugs/suggestions
-- Email: [datta81069@gmail.com]
+- GitHub: [DattaSai13](https://github.com/DattaSai13)
+- Issues tab for bugs, suggestions, and feedback
 
 ---
 
-> “Build fast. Deploy faster. React + Flask FTW 💻🔥”
+> “Build fast. Connect easily. React + Flask = ❤️”
