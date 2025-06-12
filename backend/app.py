@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for React frontend
+CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-project.vercel.app", "http://localhost:5173"]}})  # Allow Vercel and local dev
 
 # Default user data (in-memory storage)
 users = [
