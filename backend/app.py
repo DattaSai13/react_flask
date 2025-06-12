@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-project.vercel.app", "http://localhost:5173"]}})  # Update with your Vercel URL
+CORS(app, resources={r"/api/*": {"origins": ["https://react-flask-nine.vercel.app", "http://localhost:5173"]}})
 
 # Default user data (in-memory storage)
 users = [
@@ -13,6 +13,10 @@ users = [
 
 # Counter for generating unique IDs
 user_id_counter = 104
+
+@app.route('/')
+def home():
+    return jsonify({"message": "Welcome to the Flask API. Use /api/users to access the API."})
 
 @app.route('/api/users', methods=['GET'])
 def get_users():
